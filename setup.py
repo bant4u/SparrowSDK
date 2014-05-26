@@ -4,13 +4,14 @@ Created on May 26, 2014
 @author: bijay
 '''
 #!/usr/bin/env python
-from setuptools import setup
+from setuptools import setup, find_packages
 from sparrow.version import __version__
 
 exec(open("sparrow/version.py").read())
 
 setup(
     name='sparrow-sdk',
+    packages=find_packages(),
     version=__version__,
     description='This client library is designed to support the sparrow sms api and '
                 'is the canonical way to implement sparrow authentication.',
