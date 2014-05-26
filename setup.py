@@ -7,10 +7,10 @@ Created on May 26, 2014
 from setuptools import setup, find_packages
 from sparrow.version import __version__
 
-exec(open("sparrow/version.py").read())
+#exec(open("sparrow/version.py").read())
 
 setup(
-    name='sparrow-sdk',
+    name='SparrowSDK',
     #packages=find_packages(),
     version=__version__,
     description='This client library is designed to support the sparrow sms api and '
@@ -18,9 +18,9 @@ setup(
     author='sparrow',
     maintainer='Bijay Pant',
     maintainer_email='bijay@janakitech.com',
-    url='https://github.com/',
+    url='https://github.com/bant4u/SparrowSDK',
     license='Apache',
-    packages=["facebook"],
+    packages=find_packages(),
     long_description=open("README.rst").read(),
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
@@ -31,4 +31,5 @@ setup(
     install_requires=[
         'requests',
     ],
+
 )
