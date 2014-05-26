@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: SparrowSDK
+Version: 1.0.0-alpha
+Summary: This client library is designed to support the sparrow sms api and is the canonical way to implement sparrow authentication.
+Home-page: https://github.com/bant4u/SparrowSDK
+Author: Bijay Pant
+Author-email: bijay@janakitech.com
+License: Apache
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3

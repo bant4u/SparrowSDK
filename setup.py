@@ -12,7 +12,6 @@ from sparrow.version import __version__
 setup(
     name='SparrowSDK',
     #packages=find_packages(),
-    version=__version__,
     description='This client library is designed to support the sparrow sms api and '
                 'is the canonical way to implement sparrow authentication.',
     author='sparrow',
@@ -31,5 +30,7 @@ setup(
     install_requires=[
         'requests',
     ],
+    version=__version__,
+
 
 )

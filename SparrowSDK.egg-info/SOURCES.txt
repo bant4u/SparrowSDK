@@ -1,0 +1,9 @@
+README.rst
+setup.py
+SparrowSDK.egg-info/PKG-INFO
+SparrowSDK.egg-info/SOURCES.txt
+SparrowSDK.egg-info/dependency_links.txt
+SparrowSDK.egg-info/requires.txt
+SparrowSDK.egg-info/top_level.txt
+sparrow/__init__.py
+sparrow/version.py
