@@ -11,7 +11,7 @@ exec(open("sparrow/version.py").read())
 
 setup(
     name='sparrow-sdk',
-    packages=find_packages(),
+    #packages=find_packages(),
     version=__version__,
     description='This client library is designed to support the sparrow sms api and '
                 'is the canonical way to implement sparrow authentication.',
@@ -20,7 +20,7 @@ setup(
     maintainer_email='bijay@janakitech.com',
     url='https://github.com/',
     license='Apache',
-    packages=["sparrow"],
+    packages=["facebook"],
     long_description=open("README.rst").read(),
     classifiers=[
         'License :: OSI Approved :: Apache Software License',

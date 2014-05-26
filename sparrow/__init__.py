@@ -20,6 +20,7 @@ class OutgoingAPI():
             self.url=url
         self.client_id = client_id
         self.username = username
+	self.password = password
         print self.url
     
     def sendsms(self, sender, to , text_message):
