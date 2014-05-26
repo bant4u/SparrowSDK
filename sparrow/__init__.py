@@ -20,8 +20,7 @@ class OutgoingAPI():
             self.url=url
         self.client_id = client_id
         self.username = username
-	self.password = password
-        print self.url
+        self.password = password
     
     def sendsms(self, sender, to , text_message):
         values = {'client_id': self.client_id,
@@ -31,18 +30,21 @@ class OutgoingAPI():
           'to': to,
           'text':text_message
           }
+        
         data = urllib.urlencode(values)
         req = urllib2.Request(self.url, data)
         try:
             response = urllib2.urlopen(req)
             response_value = response.read()
-            print response_value
+
         except HTTPError as e:
             print 'The server couldn\'t fulfill the request.'
             print 'Error code: ', e.code
-            print e.read()
+            response_value = e.read()
 
         except URLError as e:
             print 'We failed to reach a server.'
             print 'Reason: ', e.reason
+        
+        return response_value
         
