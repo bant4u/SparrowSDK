@@ -5,9 +5,6 @@ Created on May 26, 2014
 '''
 #!/usr/bin/env python
 from setuptools import setup, find_packages
-from sparrow.version import __version__
-
-#exec(open("sparrow/version.py").read())
 
 setup(
     name='SparrowSDK',
@@ -30,7 +27,7 @@ setup(
     install_requires=[
         'requests',
     ],
-    version=__version__,
+    version="1.0.0-alpha",
 
 
 )

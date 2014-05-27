@@ -7,7 +7,6 @@ import unittest
 from sparrow import OutgoingAPI
 
 
-
 class Test(unittest.TestCase):
 
     def setUp(self,):
@@ -15,7 +14,6 @@ class Test(unittest.TestCase):
         self.username = 'bijay'
         self.password = 'bijay'
         self.url = None
-
 
     def tearDown(self):
         print "Success"
@@ -55,29 +53,27 @@ class Test(unittest.TestCase):
     def test_sendsms_without_from(self):
         out = OutgoingAPI('bijay','bijay','bijay',None) 
         resp = out.sendsms('9848442934', '','Hello')
+        print resp
         #self.assertIn("",resp)
-        pass
     
     def test_sendsms_without_to(self):
         out = OutgoingAPI('bijay','bijay','bijay',None) 
         resp = out.sendsms('9848442934', '','Hello')
         #self.assertIn("",resp)
-        pass
+        print resp
     
     
     def test_sendsms_without_message(self):
         out = OutgoingAPI('bijay','bijay','bijay',None) 
         resp = out.sendsms('9848442934','9834343434','')
         #self.assertIn("",resp)
-        pass
+        print resp
+
     
     def test_sendsms_(self):
         out = OutgoingAPI('bijay','bijay','bijay',None)
         resp = out.sendsms('9848442934','9834343434','Hello')
-        pass
-        
-        
-
+        print resp
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
