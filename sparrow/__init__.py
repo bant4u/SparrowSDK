@@ -14,10 +14,7 @@ import json
 class OutgoingAPI():
     
     def __init__(self,client_id=None, username=None, password=None,url= None,):
-        if url is None:
-            self.url = 'http://api.sparrowsms.com/call_in.php?'
-        else:
-            self.url=url
+        self.url = 'http://api.sparrowsms.com/call_in.php?'
         self.client_id = client_id
         self.username = username
         self.password = password
@@ -29,18 +26,17 @@ class OutgoingAPI():
       
 
     
-    def sendsms(self, **kwargs):
-        self.sender=kwargs['sender']
-        self.to=kwargs['to']
-        self.text_message=kwargs['text_message']
+    def sendsms(self,to=None, text_message=None, sender = None):
         values = {'client_id': self.client_id,
-          'username': self.username,
-          'password': self.password,
-          'from': self.sender,
-          'to': self.to,
-          'text':self.text_message
-          }
-        return self.url_call(values)
+                  'username': self.username,
+                  'password': self.password,
+                  'from': sender,
+                  'to': to,
+                  'text':text_message
+              }
+        response_value = self.url_call(values)
+        print response_value
+        return response_value
         
   
     def url_call(self,values):
@@ -53,11 +49,13 @@ class OutgoingAPI():
         except HTTPError as e:
             print 'The server couldn\'t fulfill the request.'
             print 'Error code: ', e.code
-            response_value = e.read()
+            print "Full error:: ", e.read()
+
 
         except URLError as e:
             print 'We failed to reach a server.'
             print 'Reason: ', e.reason   
-            response_value = e.read()     
+            print e.read()
+            response_value = e.read() 
         return response_value
         
