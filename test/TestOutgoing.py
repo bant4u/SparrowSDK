@@ -14,65 +14,74 @@ class Test(unittest.TestCase):
         self.username = 'bijay'
         self.password = 'bijay'
         self.url = None
+        
+        self.ERROR_NO_USERNAME='Error 1.1: 403 - Username'
+        self.ERROR_NO_CLIENT_ID='Error 1: 403 - You must be someone'  
+        self.ERROR_UNAUTHORIZED='Error 2: 403'
+        
+        #sendsms parameters
+        self.FROM='9848422934'
+        self.TO='9848422934'
+        self.TEXT="Hello testing"
+
+           
+    
 
     def tearDown(self):
         print "Success"
-
+    
     def test_outgoing_with_username_only(self):
-        out = OutgoingAPI("",'bijay',"",None)
-        resp = out.sendsms('9848848484', '9848848484', 'Hello world')
-        self.assertIn('Error 1: 403 - You must be someone', resp)
+        out = OutgoingAPI("",self.username,"",)
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_NO_CLIENT_ID, resp)
     
     def test_outgoing_with_client_id_only(self):
-        out = OutgoingAPI("bijay","","",None)
-        resp = out.sendsms('9848848484', '9848848484', 'Hello world')
-        self.assertIn('Error 1.1: 403 - Username', resp)
+        out = OutgoingAPI(self.client_id,"","")
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_NO_USERNAME, resp)
     
     def test_outgoing_with_password_only(self):
-        out = OutgoingAPI("","","bijay",None)
-        resp = out.sendsms('9848848484', '9848848484', 'Hello world')
-        self.assertIn("Error 1.1: 403 - Username isn't supplied", resp)
+        out = OutgoingAPI("","",self.password,)
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_NO_USERNAME, resp)
     
-    # testing the Api if no client_id is supplied
-    def test_outgoing_without_client(self):
-        out = OutgoingAPI('','bijay','bijay',None) 
-        resp = out.sendsms('9848442934', '9845454545','Hello')
-        self.assertIn("Error 1: 403 - You must",resp)
+    def test_outgoing_without_client_id(self):
+        out = OutgoingAPI('',self.username,self.password,) 
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_NO_CLIENT_ID,resp)
     
-    # testing the Api if no password is supplied
     def test_outgoing_without_password(self):
-        out = OutgoingAPI('bijay','bijay','',None) 
-        resp = out.sendsms('9848442934', '9845454545','Hello')
-        self.assertIn("Error 2: 403 - Unauthorized",resp)
+        out = OutgoingAPI(self.client_id,self.username,'') 
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_UNAUTHORIZED,resp)
     
     def test_outgoing_without_username(self):
-        out = OutgoingAPI('bijay',None,'bijay',None) 
-        resp = out.sendsms('9848442934', '9845454545','Hello')
-        self.assertIn("Error 2: 403",resp)
+        out = OutgoingAPI(self.client_id,'',self.password) 
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
+        self.assertIn(self.ERROR_NO_USERNAME,resp)
     
     def test_sendsms_without_from(self):
-        out = OutgoingAPI('bijay','bijay','bijay',None) 
-        resp = out.sendsms('9848442934', '','Hello')
+        out = OutgoingAPI(self.client_id,self.username,self.password) 
+        resp = out.sendsms('', self.TO,self.TEXT)
         print resp
         #self.assertIn("",resp)
     
     def test_sendsms_without_to(self):
-        out = OutgoingAPI('bijay','bijay','bijay',None) 
-        resp = out.sendsms('9848442934', '','Hello')
+        out = OutgoingAPI(self.client_id,self.username,self.password) 
+        resp = out.sendsms(self.FROM, '',self.TEXT)
         #self.assertIn("",resp)
         print resp
     
     
     def test_sendsms_without_message(self):
-        out = OutgoingAPI('bijay','bijay','bijay',None) 
-        resp = out.sendsms('9848442934','9834343434','')
-        #self.assertIn("",resp)
+        out = OutgoingAPI(self.client_id,self.username,self.password) 
+        resp = out.sendsms(self.FROM,self.TO,'')
         print resp
 
     
     def test_sendsms_(self):
-        out = OutgoingAPI('bijay','bijay','bijay',None)
-        resp = out.sendsms('9848442934','9834343434','Hello')
+        out = OutgoingAPI(self.client_id,self.username,self.password)
+        resp = out.sendsms(self.FROM, self.TO, self.TEXT)
         print resp
 
 if __name__ == "__main__":
